@@ -2,3 +2,16 @@
 target/
 dbt_packages/
 logs/
+
+# Ignorer l'environnement virtuel
+env-dbt/
+
+# Fichiers Python compilés
+__pycache__/
+
+# Configuration locale
+*.env
+
+# Cache
+*.log
+
