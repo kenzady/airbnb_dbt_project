@@ -36,8 +36,7 @@ models:
              to: ref('dim_hosts_cleansed')
              field: host_id
 
-
-         - name: price
+     - name: price
        description: '{{ doc("dim_listing_cleansed__price") }}'
        tests:
          - not_null
@@ -63,3 +62,28 @@ models:
        tests:
          - accepted_values:
              values: ['t', 'f']
+
+  - name: dim_listings_w_hosts
+    description: Listings data with hosts details.
+    tests:
+      - dbt_expectations.expect_table_row_count_to_equal_other_table:
+          compare_model: source('airbnb','listings')
+
+
+  - name: fct_reviews
+    description: Incremental table with listings reviews.
+    columns:
+      - name: listing_id
+        tests:
+          - relationships:
+              to: ref('dim_listings_cleansed')
+              field: listing_id
+
+      - name: reviewer_name
+        tests:
+          - not_null
+
+      - name: review_sentiment
+        tests:
+          - accepted_values:
+              values: ['positive', 'neutral', 'negative']
