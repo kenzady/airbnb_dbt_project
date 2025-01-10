@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: Executive Dashboard
+    type: dashboard
+    maturity: low
+    url: https://dfc2ab26.us1a.app.preset.io/superset/dashboard/8/?native_filters_key=xDFE3Cq9HZPtq5Ee3huv6N4rg8qRsc24Cb-Y7fhivj9PEMSH1Wu6DdBKjKXpcs3C
+    description: Executive Dashboard about Airbnb listings and hosts
+
+    depends_on:
+      - ref('dim_listings_w_hosts')
+      - ref('mart_fullmoon_reviews')
+      - ref('dim_hosts_cleansed')
+    owner:
+      name: Kenza DIEYE
+      email: kenza.dieye@gmail.com
